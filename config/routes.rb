@@ -8,6 +8,9 @@ SampleApp::Application.routes.draw do
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
 
+  match '/new_search', :to => 'search#new'
+  match '/search', :to => 'search#search'
+
   root to: 'static_pages#home'
 
   match '/signup',   to: 'users#new'
