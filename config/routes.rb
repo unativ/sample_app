@@ -1,13 +1,21 @@
 SampleApp::Application.routes.draw do
+
   resources :users do
     member do
       get :following, :followers
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
+
+
+  # Match vulnerability - CSRF
+  match '/delete_post/:id', to: 'microposts#destroy'
+
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
 
+  resources :password_resets
+  
   match '/new_search', :to => 'search#new'
   match '/search', :to => 'search#search'
 

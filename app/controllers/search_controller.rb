@@ -1,4 +1,7 @@
 class SearchController < ApplicationController
+  before_filter :signed_in_user
+  before_filter :correct_user, only: :destroy
+
   def new  
   end
 
@@ -14,7 +17,7 @@ class SearchController < ApplicationController
     @results = Micropost.where("content LIKE '%#{params[:query]}%'").all
     
     # good (but still % injection)
-    #@results = Micropost.where('content LIKE ?', "%#{params[:query]}")
+    #@results = Micropost.where('content LIKE ?', "%#{params[:query]}%").all
    
     #unless params[:token].nil?
       #User.where(:email => params[:email], :remember_token => params[:token]).all
@@ -25,8 +28,10 @@ class SearchController < ApplicationController
 
     #@results = Micropost.where(:content => params[:query]).all
 
-    # SQL string: Check' )) or 1 = 1  -- 
-    # ') union select name, email, remember_token, 4, 5 from users -- 
-    # ') union select name, remember_token, 3, 4, 5 from users -- 
+    # SQL string: 
+    # a' ) or 1 = 1  --  
+    # XXX') union select 1, email, 1, 1, 1 from users --  
+    # XXX') union select 1, remember_token, 1, 1, 1 from users --  
+    #
   end
 end
