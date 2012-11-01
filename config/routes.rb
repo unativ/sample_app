@@ -10,6 +10,7 @@ SampleApp::Application.routes.draw do
 
   # Match vulnerability - CSRF
   match '/delete_post/:id', to: 'microposts#destroy'
+  # match '/delete_post/:id', to: 'microposts#destroy', via: delete
 
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
