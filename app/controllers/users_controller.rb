@@ -24,15 +24,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
-    
-    #User.where(:email => params[:email]).all
-    #User.where(:email => @user[:email]).all
-
-    #puts stop
-
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Admin User Created !!!!" if @user.admin
       redirect_to @user
     else
       render 'new'

