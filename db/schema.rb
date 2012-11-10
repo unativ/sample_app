@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(:version => 20121029150531) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "microposts", ["content"], :name => "fulltext_posts"
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
 
   create_table "relationships", :force => true do |t|
@@ -37,22 +36,16 @@ ActiveRecord::Schema.define(:version => 20121029150531) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                                               :null => false
-    t.datetime "updated_at",                                               :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin",                                 :default => false
-    t.string   "encrypted_password",     :limit => 128
-    t.string   "salt",                   :limit => 128
-    t.string   "confirmation_token",     :limit => 128
+    t.boolean  "admin",                  :default => false
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
-
-  create_table "xxx", :force => true do |t|
-  end
 
 end
